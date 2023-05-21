@@ -30,10 +30,17 @@
 			<div class="calc__keyboard">
 				<button class="calc__button" aria-label="Clear">CE</button>
 				<button class="calc__button" aria-label="Clear all">C</button>
-				<button class="calc__button" aria-label="percent">%</button>
+				<button
+					class="calc__button"
+					aria-label="percent"
+					data-unary="%"
+				>
+					%
+				</button>
 				<button
 					class="calc__button operation-button"
 					aria-label="division"
+					data-unary="/"
 				>
 					<svg
 						width="22"
@@ -64,6 +71,7 @@
 				<button
 					class="calc__button operation-button"
 					aria-label="multiply"
+					data-unary="*"
 				>
 					X
 				</button>
@@ -73,6 +81,7 @@
 				<button
 					class="calc__button operation-button"
 					aria-label="subtract"
+					data-unary="-"
 				>
 					-
 				</button>
@@ -82,6 +91,7 @@
 				<button
 					class="calc__button operation-button"
 					aria-label="addition"
+					data-unary="+"
 				>
 					+
 				</button>

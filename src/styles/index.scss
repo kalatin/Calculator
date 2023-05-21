@@ -89,7 +89,7 @@ button {
 		padding: 18px;
 		border-radius: 50%;
 		color: $text-color;
-		transition: 0.3s all;
+		transition: 0.3s background;
 		&:hover {
 			background: #2f2936;
 		}
@@ -98,8 +98,17 @@ button {
 
 .operation-button {
 	background: $button-color;
-	transition: 0.3s all;
+	transition: 0.3s background;
 	&:hover {
 		background: $hover-color;
+	}
+}
+
+@media (width < 500px) {
+	.calc {
+		padding: 20px;
+		&__button {
+			margin: 8px;
+		}
 	}
 }
