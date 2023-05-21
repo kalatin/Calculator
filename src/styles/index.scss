@@ -1,0 +1,11 @@
+@import './variables';
+
+body {
+	background: $bg-color;
+}
+
+.calc__keyboard {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(5, 1fr);
+}
