@@ -6,6 +6,16 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Rubik&display=swap"
+			rel="stylesheet"
+		/>
 		<title>Calculator</title>
 	</head>
 	<body>
@@ -21,7 +31,10 @@
 				<button class="calc__button" aria-label="Clear">CE</button>
 				<button class="calc__button" aria-label="Clear all">C</button>
 				<button class="calc__button" aria-label="percent">%</button>
-				<button class="calc__button" aria-label="division">
+				<button
+					class="calc__button operation-button"
+					aria-label="division"
+				>
 					<svg
 						width="22"
 						height="18"
@@ -48,15 +61,30 @@
 				<button class="calc__button" aria-label="number 7">7</button>
 				<button class="calc__button" aria-label="number 8">8</button>
 				<button class="calc__button" aria-label="number 9">9</button>
-				<button class="calc__button" aria-label="multiply">X</button>
+				<button
+					class="calc__button operation-button"
+					aria-label="multiply"
+				>
+					X
+				</button>
 				<button class="calc__button" aria-label="number 4">4</button>
 				<button class="calc__button" aria-label="number 5">5</button>
 				<button class="calc__button" aria-label="number 6">6</button>
-				<button class="calc__button" aria-label="subtract">-</button>
+				<button
+					class="calc__button operation-button"
+					aria-label="subtract"
+				>
+					-
+				</button>
 				<button class="calc__button" aria-label="number 1">1</button>
 				<button class="calc__button" aria-label="number 2">2</button>
 				<button class="calc__button" aria-label="number 3">3</button>
-				<button class="calc__button" aria-label="addition">+</button>
+				<button
+					class="calc__button operation-button"
+					aria-label="addition"
+				>
+					+
+				</button>
 				<button class="calc__button" aria-label="plus minus">
 					<svg
 						width="24"
@@ -93,7 +121,12 @@
 				</button>
 				<button class="calc__button" aria-label="number 0">0</button>
 				<button class="calc__button" aria-label="comma">,</button>
-				<button class="calc__button" aria-label="equally">=</button>
+				<button
+					class="calc__button operation-button"
+					aria-label="equally"
+				>
+					=
+				</button>
 			</div>
 		</div>
 		<script type="module" src="./src/scripts/index.js"></script>
