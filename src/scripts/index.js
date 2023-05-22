@@ -1,6 +1,6 @@
 import './../styles/index.scss';
 
-let [operand1, operand2] = [0, null];
+let [operand1, operand2] = [1, null];
 let unary = undefined;
 
 const keyBoard = document.querySelector('.calc__keyboard');
@@ -50,7 +50,21 @@ keyBoard.addEventListener('click', e => {
 			' '
 		)[0]} ${unary} `;
 	}
-
+	// плюс/минус
+	else if (
+		e.target.closest('.calc__button') &&
+		e.target.closest('.calc__button').dataset.unary == '+/-'
+	) {
+		if (operand2 !== null && unary !== undefined) {
+			operand2 *= -1;
+			actionElem.textContent = `${+actionElem.textContent.split(
+				' '
+			)[0]} ${unary} ${String(operand2)}`;
+		} else if (operand2 === null && unary === undefined) {
+			operand1 *= -1;
+			actionElem.textContent = operand1;
+		}
+	}
 	// Второе число
 	else if (
 		unary !== undefined &&
