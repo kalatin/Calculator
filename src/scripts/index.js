@@ -25,6 +25,16 @@ keyBoard.addEventListener('click', e => {
 
 		actionElem.textContent = String(+operand1);
 	}
+	// Точка с запятой - 1
+	else if (
+		!String(operand1).includes('.') &&
+		e.target.closest('.calc__button') &&
+		e.target.closest('.calc__button').textContent === ',' &&
+		unary === undefined
+	) {
+		operand1 = String(operand1) + '.';
+		actionElem.textContent = actionElem.textContent + '.';
+	}
 
 	// Унарный
 	else if (
@@ -36,10 +46,11 @@ keyBoard.addEventListener('click', e => {
 	) {
 		unary = e.target.closest('.calc__button').dataset.unary;
 
-		actionElem.textContent = `${
-			actionElem.textContent.split(' ')[0]
-		} ${unary} `;
+		actionElem.textContent = `${+actionElem.textContent.split(
+			' '
+		)[0]} ${unary} `;
 	}
+
 	// Второе число
 	else if (
 		unary !== undefined &&
@@ -48,13 +59,27 @@ keyBoard.addEventListener('click', e => {
 		e.target.closest('.calc__button').textContent !==
 			'\n\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t'
 	) {
-		console.log(22);
-		operand2 = String(+operand2) + e.target.textContent;
+		operand2 === null
+			? (operand2 = String(+operand2) + e.target.textContent)
+			: (operand2 = String(operand2) + e.target.textContent);
 
-		actionElem.textContent = `${
-			actionElem.textContent.split(' ')[0]
-		} ${unary} ${+operand2}`;
+		actionElem.textContent = `${+actionElem.textContent.split(
+			' '
+		)[0]} ${unary} ${String(+operand2)}`;
 	}
+	// Точка с запятой - 2
+	else if (
+		!String(operand2).includes('.') &&
+		e.target.closest('.calc__button') &&
+		e.target.closest('.calc__button').textContent === ',' &&
+		unary !== undefined
+	) {
+		operand2 = String(+operand2) + '.';
+		actionElem.textContent = `${+actionElem.textContent.split(
+			' '
+		)[0]} ${unary} ${String(+operand2 + '.')}`;
+	}
+
 	// ====
 	else if (
 		e.target.textContent.trim() === '=' &&
@@ -63,6 +88,7 @@ keyBoard.addEventListener('click', e => {
 	) {
 		equally();
 	}
+
 	// Полнный сброс
 	else if (e.target.textContent.trim() === 'C') {
 		fullReset();
@@ -71,6 +97,7 @@ keyBoard.addEventListener('click', e => {
 	else if (e.target.textContent.trim() === 'CE') {
 		lastReset();
 	}
+
 	// Если продолжать
 	else if (
 		unary !== undefined &&
@@ -87,18 +114,63 @@ keyBoard.addEventListener('click', e => {
 });
 
 function operation(key) {
+	if (String(operand1).split('.').length > 1) {
+		operand1 = (+operand1).toFixed(
+			String(operand1).split('.')[1].length
+		);
+	}
+	if (String(operand2).split('.').length > 1) {
+		operand2 = (+operand2).toFixed(
+			String(operand2).split('.')[1].length
+		);
+	}
 	switch (key) {
 		case '+':
-			return +operand1 + +operand2;
+			{
+				const maxLength = Math.max(
+					operand1.toString().split('.')[1]?.length || 0,
+					operand2.toString().split('.')[1]?.length || 0
+				);
+				const multiplier = Math.pow(10, maxLength);
+				return (
+					(operand1 * multiplier + operand2 * multiplier) / multiplier
+				);
+			}
 			break;
 		case '-':
-			return +operand1 - +operand2;
+			{
+				const maxLength = Math.max(
+					operand1.toString().split('.')[1]?.length || 0,
+					operand2.toString().split('.')[1]?.length || 0
+				);
+				const multiplier = Math.pow(10, maxLength);
+				return (
+					(operand1 * multiplier - operand2 * multiplier) / multiplier
+				);
+			}
 			break;
 		case '/':
-			return +operand1 / +operand2;
+			{
+				const maxLength = Math.max(
+					operand1.toString().split('.')[1]?.length || 0,
+					operand2.toString().split('.')[1]?.length || 0
+				);
+				const multiplier = Math.pow(10, maxLength);
+				return (operand1 * multiplier) / (operand2 * multiplier);
+			}
 			break;
 		case '*':
-			return +operand1 * +operand2;
+			{
+				const maxLength = Math.max(
+					operand1.toString().split('.')[1]?.length || 0,
+					operand2.toString().split('.')[1]?.length || 0
+				);
+				const multiplier = Math.pow(10, maxLength);
+				return (
+					(operand1 * multiplier * (operand2 * multiplier)) /
+					(multiplier * multiplier)
+				);
+			}
 			break;
 		case '%':
 			return +operand1 % +operand2;
