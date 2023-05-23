@@ -52,6 +52,7 @@ button {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		column-gap: 10px;
 	}
 
 	&__equally {
@@ -67,6 +68,8 @@ button {
 	}
 
 	&__keyboard {
+		max-width: 361px;
+		margin: 0 auto;
 	}
 
 	&__button {
@@ -104,11 +107,24 @@ button {
 	}
 }
 
+@media (width < 600px) {
+	.calc {
+		width: 100%;
+		margin: 0 15px;
+		&__field {
+			font-size: 27px;
+		}
+	}
+}
+
 @media (width < 500px) {
 	.calc {
 		padding: 20px;
 		&__button {
 			margin: 8px;
+		}
+		&__keyboard {
+			max-width: 341px;
 		}
 	}
 }
