@@ -1,4 +1,4 @@
-import './../styles/index.scss';
+import '../styles/index.scss';
 
 // Операнды 1-2
 let [operand1, operand2] = [0, null];
